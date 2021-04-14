@@ -8,6 +8,26 @@
     /// </author>
     public class DistanceConverter
     {
+        private double miles;
+        private double feet;
+    
+        public void Run()
+        {
 
+        }
+        private void InputMiles()
+        {
+
+        }
+
+        private void CaluculateFeet()
+        {
+
+        }
+
+        private void OutputFeet()
+        {
+
+        }
     }
 }
