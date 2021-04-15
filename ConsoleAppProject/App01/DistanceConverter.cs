@@ -14,10 +14,20 @@ namespace ConsoleAppProject.App01
     
         public void Run()
         {
+            OutputHeading();
             InputMiles();
             CaluculateFeet();
             OutputFeet();
         }
+
+        private void OutputHeading()
+        {
+            Console.Write("\n------------------------");
+            Console.Write("      Convert Miles to feet      ");
+            Console.Write("      by Brandon Lim-Kee     ");
+            Console.Write("\n------------------------\n");
+        }
+
         private void InputMiles()
         {
             Console.Write("Please enter the number of miles: ");
@@ -27,12 +37,12 @@ namespace ConsoleAppProject.App01
 
         private void CaluculateFeet()
         {
-
+            feet = miles * 5280;
         }
 
         private void OutputFeet()
         {
-
+            Console.WriteLine(miles + " miles is equal to " + feet + " feet");
         }
     }
 }
