@@ -2,10 +2,11 @@
 namespace ConsoleAppProject.App01
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// The app is a distance converter that will convert a given mesaurement 
+    /// into another.
     /// </summary>
     /// <author>
-    /// Student Name version 0.1
+    /// Brandon Lim-Kee version 0.1
     /// </author>
     public class DistanceConverter
     {
@@ -15,17 +16,29 @@ namespace ConsoleAppProject.App01
         public void Run()
         {
             OutputHeading();
-            InputMiles();
-            CaluculateFeet();
-            OutputFeet();
+            SelectChoice();
+            //InputMiles();
+            //CaluculateFeet();
+           // OutputFeet();
         }
 
         private void OutputHeading()
         {
-            Console.Write("\n------------------------");
-            Console.Write("      Convert Miles to feet      ");
-            Console.Write("      by Brandon Lim-Kee     ");
-            Console.Write("\n------------------------\n");
+            Console.WriteLine("\n----------------------------------");
+            Console.WriteLine("      Convert Miles to feet      ");
+            Console.WriteLine("         by Brandon Lim-Kee     ");
+            Console.WriteLine("----------------------------------\n");
+        }
+
+        private int SelectChoice()
+        {
+            Console.WriteLine("[1] Miles");
+            Console.WriteLine("[2] Feet");
+            Console.Write("Please enter the unit you would like to convert: ");
+
+            int choice = Console.Read();
+
+            return choice;
         }
 
         private void InputMiles()
