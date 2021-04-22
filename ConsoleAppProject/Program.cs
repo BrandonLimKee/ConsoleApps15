@@ -33,6 +33,7 @@ namespace ConsoleAppProject
 
             if(choice == 1)
             {
+                Console.Clear();
                 DistanceConverter converter = new DistanceConverter();
                 converter.Run();
             }
