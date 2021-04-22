@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleAppProject.Helpers;
+using System;
 namespace ConsoleAppProject.App01
 {
     /// <summary>
@@ -15,11 +16,7 @@ namespace ConsoleAppProject.App01
         private double fromDistance;
         private double toDistance;
         private int choice;
-        private int i = 1;
-        private int j = 1;
-        private int y = 1;
-        private int a;
-        private int prevChoice;
+
 
         /// <summary>
         /// This method will be used to run through all
@@ -27,19 +24,26 @@ namespace ConsoleAppProject.App01
         /// </summary>
         public void Run()
         {
-            while(i == 1)
+            bool repeat = true;
+            while (repeat)
             {
                 OutputHeading();
-                SelectUnit("Enter the unit you would like to convert: ");
+                DisplayUnits();
+                choice = (int)ConsoleHelper.InputNumber("Enter the unit you would like to convert: ",1,3);
                 fromUnit = ExecuteChoice(choice);
                 Console.WriteLine("You have selected " + fromUnit);
-                SelectUnit("Enter the unit you would like to convert to: ");
+
+                DisplayUnits();
+                choice = (int)ConsoleHelper.InputNumber("Enter the unit you would like to convert: ", 1, 3);
                 toUnit = ExecuteChoice(choice);
                 Console.WriteLine("You have selected " + toUnit);
+
                 fromDistance = InputDistance();
                 toDistance = CalculateDistance();
                 Console.WriteLine(toDistance);
-                SelectRepeat();
+
+                repeat = SelectRepeat();
+
             }
             
         }
@@ -53,56 +57,8 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("         by Brandon Lim-Kee     ");
             Console.WriteLine("----------------------------------\n");
         }
-        /// <summary>
-        /// This method prompts the user to select
-        /// a unit. It will then return the selected unit 
-        /// as a string
-        /// </summary>
-        /// <param name="prompt"></param>
-        /// <returns></returns>
-        private void SelectUnit(string prompt)
-        {
-            j = 1;
-            y = 1;
-            while (j == 1)
-            {
-                DisplayUnits();
-
-                Console.Write(prompt);
-                while (y == 1)
-                {
-                    string value = Console.ReadLine();
-
-                    if(!int.TryParse(value, out a))
-                    {
-                        Console.WriteLine("Error please enter a number");
-                    }
-                    else
-                    {
-                        choice = Convert.ToInt32(value);
-                        y++;
-                    }
-                }
-                if (choice == prevChoice)
-                {
-                    Console.WriteLine("Error: you tried to convert a unit to the same unit. " +
-                        "Please try again");
-
-                }
-
-                else if (choice != 0)
-                {
-                    prevChoice = choice;
-                    j++;
-                }
-
-                else
-                {
-                    Console.WriteLine("Error: invalid input. Please try again");
-
-                }
-            }
-        }
+ 
+        
         /// <summary>
         /// Depending on what choice is equal to 
         /// the method will retrun a unit
@@ -138,8 +94,7 @@ namespace ConsoleAppProject.App01
         /// <returns></returns>
         private double InputDistance()
         {
-            Console.WriteLine("Enter the number of " + fromUnit + ": ");
-            return Convert.ToDouble(Console.ReadLine());
+            return ConsoleHelper.InputNumber($"Enter the number of {fromUnit} : ");
         }
         /// <summary>
         /// This method calculates the distance for the user
@@ -179,7 +134,7 @@ namespace ConsoleAppProject.App01
                 return fromDistance / 1609.34;
             }
 
-            else 
+            else
             {
                 return 0;
             }
@@ -195,24 +150,39 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("[3] Metres");
         }
 
-        private void SelectRepeat()
+        private bool SelectRepeat()
         {
-            Console.WriteLine("You would you like to carry out" +
-                "another calculation?Y/N");
-            string choice = Console.ReadLine();
-
-            if(choice == "y")
+            bool repeat = true;
+            while (repeat)
             {
-                Console.WriteLine("You have selected yes");
-                prevChoice = 0;
-            }
+                Console.WriteLine("You would you like to carry out" +
+                    "another calculation?Y/N");
+                string choice = Console.ReadLine();
 
-            if(choice == "n")
-            {
-                Console.WriteLine("You have selected no");
-                i++;
+                if (choice.ToLower().Contains("y"))
+                {
+                    Console.WriteLine("You have selected yes");
+                    repeat = false;
+                    return true;
+                    
+                }
+
+                else if (choice.ToLower().Contains("n"))
+                {
+                    Console.WriteLine("You have selected no");
+                    repeat = false;
+                    return false;
+                }
+
+                else
+                {
+                    Console.WriteLine("Error: invalid input. Please try again");
+
+                }
+
             }
+            return false;
         }
-    
+
     }
 }
