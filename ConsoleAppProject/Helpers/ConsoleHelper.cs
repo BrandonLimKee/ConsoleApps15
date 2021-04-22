@@ -30,7 +30,7 @@ namespace ConsoleAppProject.Helpers
 
             // Get the user's choice
 
-            int choiceNo = (int)InputNumber("\n Please enter your choice > ", 
+            int choiceNo = (int)InputNumber("\n \tPlease enter your choice > ", 
                                             1, choices.Length);
             return choiceNo;
         }
@@ -46,7 +46,7 @@ namespace ConsoleAppProject.Helpers
             foreach (string choice in choices)
             {
                 choiceNo++;
-                Console.WriteLine($"    {choiceNo}.  {choice}");
+                Console.WriteLine($"\t    {choiceNo}.  {choice}");
             }
         }
 
@@ -125,7 +125,7 @@ namespace ConsoleAppProject.Helpers
 
             Console.WriteLine("\n ---------------------------------");
             Console.WriteLine($"    {heading}          ");
-            Console.WriteLine("     by Brandon Lim-Kee          ");
+            Console.WriteLine("     By Brandon Lim-Kee          ");
             Console.WriteLine(" ---------------------------------" +
                 "\n");
 
@@ -140,8 +140,8 @@ namespace ConsoleAppProject.Helpers
         {
             Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.WriteLine($"\n {title}");
-            Console.Write(" ");
+            Console.WriteLine($"\n\t {title}");
+            Console.Write(" \t");
 
             for(int count = 0; count <= title.Length; count++)
             {

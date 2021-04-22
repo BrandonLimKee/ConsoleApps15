@@ -16,6 +16,7 @@ namespace ConsoleAppProject.App01
         private double fromDistance;
         private double toDistance;
         private int choice;
+        private int prevChoice;
 
 
         /// <summary>
@@ -28,16 +29,32 @@ namespace ConsoleAppProject.App01
             while (repeat)
             {
                 OutputHeading();
+                ConsoleHelper.OutputHeading("Distance Converter");
                 DisplayUnits();
-                choice = (int)ConsoleHelper.InputNumber("Enter the unit you would like to convert: ",1,3);
+                choice = (int)ConsoleHelper.InputNumber("\n\tEnter the unit you would like to convert: ",1,3);
+                prevChoice = choice;
                 fromUnit = ExecuteChoice(choice);
                 Console.WriteLine("You have selected " + fromUnit);
 
-                DisplayUnits();
-                choice = (int)ConsoleHelper.InputNumber("Enter the unit you would like to convert: ", 1, 3);
-                toUnit = ExecuteChoice(choice);
-                Console.WriteLine("You have selected " + toUnit);
+                bool loop = true;
+                while (loop)
+                {
+                    DisplayUnits();
+                    choice = (int)ConsoleHelper.InputNumber("\n\tEnter the unit you would like to convert: ", 1, 3);
 
+                    if(choice == prevChoice)
+                    {
+                        Console.WriteLine("You have tried to convert a unit into the same unit");
+                    }
+
+                    else
+                    {
+                        loop = false;
+                    }
+                }
+                    toUnit = ExecuteChoice(choice);
+                    Console.WriteLine("You have selected " + toUnit);
+                
                 fromDistance = InputDistance();
                 toDistance = CalculateDistance();
                 Console.WriteLine(toDistance);
@@ -52,10 +69,10 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void OutputHeading()
         {
-            Console.WriteLine("\n----------------------------------");
-            Console.WriteLine("      Distance Converter      ");
-            Console.WriteLine("         by Brandon Lim-Kee     ");
-            Console.WriteLine("----------------------------------\n");
+            Console.WriteLine("\n\t----------------------------------");
+            Console.WriteLine("\t        Distance Converter      ");
+            Console.WriteLine("\t         by Brandon Lim-Kee     ");
+            Console.WriteLine("\t----------------------------------\n");
         }
  
         
@@ -145,9 +162,9 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void DisplayUnits()
         {
-            Console.WriteLine("[1] Miles");
-            Console.WriteLine("[2] Feet");
-            Console.WriteLine("[3] Metres");
+            Console.WriteLine("\t[1] Miles");
+            Console.WriteLine("\t[2] Feet");
+            Console.WriteLine("\t[3] Metres");
         }
 
         private bool SelectRepeat()
@@ -182,6 +199,26 @@ namespace ConsoleAppProject.App01
 
             }
             return false;
+        }
+
+        private void CheckSameUnit()
+        {
+            bool repeat = true;
+            while(repeat)
+            {
+                DisplayUnits();
+                choice = (int)ConsoleHelper.InputNumber("Enter the unit you would like to convert: ", 1, 3);
+
+                if (choice == prevChoice)
+                {
+                    Console.WriteLine("You have tried to convert a unit into the same unit");
+                }
+
+                else
+                {
+                    repeat = false;
+                }
+            }
         }
 
     }

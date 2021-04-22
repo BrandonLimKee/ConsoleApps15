@@ -1,4 +1,5 @@
 ﻿using ConsoleAppProject.App01;
+using ConsoleAppProject.App02;
 using ConsoleAppProject.Helpers;
 using System;
 
@@ -16,13 +17,34 @@ namespace ConsoleAppProject
     {
         public static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Green;
             
-            Console.WriteLine("BNU CO453 Applications Programming 2020-2021!");
+            Console.WriteLine("\tBNU CO453 Applications Programming 2020-2021!");
             Console.WriteLine();
 
-            DistanceConverter converter = new DistanceConverter();
-            converter.Run();
+            string[] choices = new string[]
+            {
+                "Distance Converter",
+                "BMI Calculator"
+            };
+
+            ConsoleHelper.OutputTitle("Enter the application you wish to use");
+            int choice = ConsoleHelper.SelectChoice(choices);
+
+            if(choice == 1)
+            {
+                DistanceConverter converter = new DistanceConverter();
+                converter.Run();
+            }
+
+            else if(choice == 2)
+            {
+                BMI cal = new BMI();
+                cal.Run();
+            }
+
+           
+            
         }
     }
 }
