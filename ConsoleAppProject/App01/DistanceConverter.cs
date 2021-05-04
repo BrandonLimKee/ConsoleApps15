@@ -11,10 +11,10 @@ namespace ConsoleAppProject.App01
     /// </author>
     public class DistanceConverter
     {
-        private DistanceUnits fromUnit;
-        private DistanceUnits toUnit;
-        private double fromDistance;
-        private double toDistance;
+        public DistanceUnits FromUnit { get; set; }
+        public DistanceUnits ToUnit  { get; set; }
+        public double FromDistance { get; set; }
+        public double ToDistance { get; set; }
         private int choice;
         private int prevChoice;
 
@@ -32,8 +32,8 @@ namespace ConsoleAppProject.App01
                 DisplayUnits();
                 choice = (int)ConsoleHelper.InputNumber("\n\tEnter the unit you would like to convert: ",1,3);
                 prevChoice = choice;
-                fromUnit = ExecuteChoice(choice);
-                Console.WriteLine("\n\tYou have selected " + fromUnit + "\n");
+                FromUnit = ExecuteChoice(choice);
+                Console.WriteLine("\n\tYou have selected " + FromUnit + "\n");
 
                 bool loop = true;
                 while (loop)
@@ -43,12 +43,12 @@ namespace ConsoleAppProject.App01
 
                     loop = CheckSameUnit(choice,prevChoice);
                 }
-                toUnit = ExecuteChoice(choice);
-                Console.WriteLine("\n\tYou have selected " + toUnit);
+                ToUnit = ExecuteChoice(choice);
+                Console.WriteLine("\n\tYou have selected " + ToUnit);
                 
-                fromDistance = ConsoleHelper.InputNumber($"\n\tEnter number of {fromUnit}: ");
-                toDistance = CalculateDistance();
-                Console.WriteLine($"\n\t{fromDistance} {fromUnit} is equal to {toDistance} {toUnit}\n");
+                FromDistance = ConsoleHelper.InputNumber($"\n\tEnter number of {FromUnit}: ");
+                ToDistance = CalculateDistance();
+                Console.WriteLine($"\n\t{FromDistance} {FromUnit} is equal to {ToDistance} {ToUnit}\n");
                 repeat = SelectRepeat();
 
             }
@@ -101,36 +101,36 @@ namespace ConsoleAppProject.App01
         /// the result
         /// </summary>
         /// <returns></returns>
-        private double CalculateDistance()
+        public double CalculateDistance()
         {
-            if (fromUnit == DistanceUnits.Miles && toUnit == DistanceUnits.Feet)
+            if (FromUnit == DistanceUnits.Miles && ToUnit == DistanceUnits.Feet)
             {
-                return fromDistance * 5280;
+                return FromDistance * 5280;
             }
 
-            else if (fromUnit == DistanceUnits.Miles && toUnit == DistanceUnits.Metres)
+            else if (FromUnit == DistanceUnits.Miles && ToUnit == DistanceUnits.Metres)
             {
-                return fromDistance * 1609.34;
+                return FromDistance * 1609.34;
             }
 
-            else if (fromUnit == DistanceUnits.Feet && toUnit == DistanceUnits.Miles)
+            else if (FromUnit == DistanceUnits.Feet && ToUnit == DistanceUnits.Miles)
             {
-                return fromDistance / 5280;
+                return FromDistance / 5280;
             }
 
-            else if (fromUnit == DistanceUnits.Feet && toUnit == DistanceUnits.Metres)
+            else if (FromUnit == DistanceUnits.Feet && ToUnit == DistanceUnits.Metres)
             {
-                return fromDistance / 3.28084;
+                return FromDistance / 3.28084;
             }
 
-            else if (fromUnit == DistanceUnits.Metres && toUnit == DistanceUnits.Feet)
+            else if (FromUnit == DistanceUnits.Metres && ToUnit == DistanceUnits.Feet)
             {
-                return fromDistance * 3.28084;
+                return FromDistance * 3.28084;
             }
 
-            else if (fromUnit == DistanceUnits.Metres && toUnit == DistanceUnits.Miles)
+            else if (FromUnit == DistanceUnits.Metres && ToUnit == DistanceUnits.Miles)
             {
-                return fromDistance / 1609.34;
+                return FromDistance / 1609.34;
             }
 
             else
