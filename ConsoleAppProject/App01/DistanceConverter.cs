@@ -33,23 +33,22 @@ namespace ConsoleAppProject.App01
                 choice = (int)ConsoleHelper.InputNumber("\n\tEnter the unit you would like to convert: ",1,3);
                 prevChoice = choice;
                 fromUnit = ExecuteChoice(choice);
-                Console.WriteLine("\n\tYou have selected " + fromUnit);
+                Console.WriteLine("\n\tYou have selected " + fromUnit + "\n");
 
                 bool loop = true;
                 while (loop)
                 {
                     DisplayUnits();
-                    choice = (int)ConsoleHelper.InputNumber("\n\tEnter the unit you would like to convert: ", 1, 3);
+                    choice = (int)ConsoleHelper.InputNumber("\n\tEnter the unit you would like to convert to: ", 1, 3);
 
                     loop = CheckSameUnit(choice,prevChoice);
                 }
                 toUnit = ExecuteChoice(choice);
                 Console.WriteLine("\n\tYou have selected " + toUnit);
                 
-                fromDistance = ConsoleHelper.InputNumber($"\n\tEnter number of {fromUnit}");
+                fromDistance = ConsoleHelper.InputNumber($"\n\tEnter number of {fromUnit}: ");
                 toDistance = CalculateDistance();
-                Console.WriteLine(toDistance);
-
+                Console.WriteLine($"\n\t{fromDistance} {fromUnit} is equal to {toDistance} {toUnit}\n");
                 repeat = SelectRepeat();
 
             }
@@ -155,7 +154,7 @@ namespace ConsoleAppProject.App01
             bool repeat = true;
             while (repeat)
             {
-                Console.WriteLine("\tWould you like to carry out" +
+                Console.Write("\tWould you like to carry out" +
                     "another calculation?Y/N: ");
                 string choice = Console.ReadLine();
 
@@ -188,7 +187,7 @@ namespace ConsoleAppProject.App01
         {
             if(a == b)
             {
-                Console.WriteLine("\tYou have tried to convert a unit into the same unit");
+                Console.WriteLine("\n\tYou have tried to convert a unit into the same unit\n");
                 return true;
             }
 

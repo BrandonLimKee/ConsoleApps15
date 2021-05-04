@@ -16,7 +16,7 @@ namespace ConsoleAppProject.Helpers
     /// </summary>
     public static class ConsoleHelper
     {
-
+        
         /// <summary>
         /// This method displays a list of numbered choices to the
         /// user, they can then select a choice and and the choice 
@@ -129,7 +129,7 @@ namespace ConsoleAppProject.Helpers
             Console.WriteLine("\t ---------------------------------" +
                 "\n");
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
         }
 
         /// <summary>

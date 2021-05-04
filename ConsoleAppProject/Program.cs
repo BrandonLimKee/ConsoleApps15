@@ -40,6 +40,7 @@ namespace ConsoleAppProject
 
             else if(choice == 2)
             {
+                Console.Clear();
                 BMI cal = new BMI();
                 cal.Run();
             }
