@@ -15,6 +15,15 @@ namespace ConsoleAppProject.App01
         public DistanceUnits ToUnit  { get; set; }
         public double FromDistance { get; set; }
         public double ToDistance { get; set; }
+
+        public DistanceUnits DistanceUnits
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private int choice;
         private int prevChoice;
 
