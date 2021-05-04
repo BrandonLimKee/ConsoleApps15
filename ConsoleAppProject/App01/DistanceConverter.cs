@@ -57,7 +57,7 @@ namespace ConsoleAppProject.App01
                 
                 FromDistance = ConsoleHelper.InputNumber($"\n\tEnter number of {FromUnit}: ");
                 ToDistance = CalculateDistance();
-                Console.WriteLine($"\n\t{FromDistance} {FromUnit} is equal to {ToDistance} {ToUnit}\n");
+                Console.WriteLine($"\n\t{FromDistance} {FromUnit} is equal to {Math.Round(ToDistance,2)} {ToUnit}\n");
                 repeat = SelectRepeat();
 
             }
