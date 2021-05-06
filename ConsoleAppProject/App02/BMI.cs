@@ -68,7 +68,7 @@ namespace ConsoleAppProject.App02
             if(choice == 1)
             {
                 InputMetricValues();
-                CalculateBMI();
+                CalculateMetricBMI();
                 DisplayBMI();
             }
 
@@ -76,7 +76,7 @@ namespace ConsoleAppProject.App02
             {
                 InputImperialValues();
                 ConvertToInchesPounds();
-                CalculateBMI();
+                CalculateImperialBMI();
                 DisplayBMI();
             }
         }
@@ -99,6 +99,9 @@ namespace ConsoleAppProject.App02
         {
             kilograms = ConsoleHelper.InputNumber("\n\tEnter your weight in kilograms: ",41, 132);
             metres = ConsoleHelper.InputNumber("\n\tEnter your height metres: ",1.42, 2.10);
+
+            Weight = kilograms;
+            Height = metres;
         }
         /// <summary>
         /// This method is used to convert stone to pounds and 
@@ -113,24 +116,28 @@ namespace ConsoleAppProject.App02
         /// This method is used to calculate the BMI value
         /// of the user
         /// </summary>
-        public void CalculateBMI()
+        public void CalculateImperialBMI()
         {
-            if(kilograms > 0)
-            {
-                Bmi = kilograms / (metres * metres);
-            }
 
-            else
-            {
                 Bmi = (Weight * 703) / (Height * Height);
-            }
+            
+        }
+
+        public void CalculateMetricBMI()
+        {
+          
+                Bmi = Weight / (Height * Height);
+            
+
         }
         /// <summary>
         /// This method displays the user's BMI value to them
         /// </summary>
         public void DisplayBMI()
         {
-            Console.WriteLine($"\n\tYour BMI value is {Math.Round(Bmi,2)}");
+            Bmi = Math.Round(Bmi, 2);
+
+            Console.WriteLine($"\n\tYour BMI value is {Bmi}");
 
             if(Bmi <= 18.50)
             {

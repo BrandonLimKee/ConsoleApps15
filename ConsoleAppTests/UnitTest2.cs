@@ -7,20 +7,40 @@ namespace TestProject2
     public class TestBMI
     {
         [TestMethod]
-        public void TestLowestUnderweight()
+        public void TestMetricLowestUnderweight()
         {
             BMI calculator = new BMI();
 
             calculator.Height = 1.93;
             calculator.Weight = 45.5;
 
-            calculator.CalculateBMI();
+            calculator.CalculateMetricBMI();
             calculator.DisplayBMI();
+            
 
             double expectedBMI = 12.22;
 
             Assert.AreEqual(expectedBMI, calculator.Bmi);
         }
+
+        [TestMethod]
+        public void TestMetricHeighestUnderweight()
+        {
+            BMI calculator = new BMI();
+
+            calculator.Height = 1.93;
+            calculator.Weight = 45.5;
+
+            calculator.CalculateMetricBMI();
+            calculator.DisplayBMI();
+
+
+            double expectedBMI = 12.22;
+
+            Assert.AreEqual(expectedBMI, calculator.Bmi);
+        }
+
+        public void Test
 
     }   
 }
