@@ -19,10 +19,19 @@ namespace ConsoleAppProject.App02
         private double inches;
         private double metres;
         private double stone;
-        private double bmi;
-        private double height;
-        private double weight;
-        private BMI_Status status;
+        public double Bmi { get; set; }
+        public double Height { get; set; }
+        public double Weight { get; set; }
+        public BMI_Status Status { get; set; }
+
+        public BMI_Status BMI_Status
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// This method will be used to run through all the 
         /// methods in a set order
@@ -78,9 +87,9 @@ namespace ConsoleAppProject.App02
         private void InputImperialValues()
         {
             stone = ConsoleHelper.InputNumber("\n\tEnter your weight in stone: ");
-            pounds = ConsoleHelper.InputNumber("\n\tEnter your weight in pounds: ");
-            feet = ConsoleHelper.InputNumber("\n\tEnter your height feet: ");
-            inches = ConsoleHelper.InputNumber("\n\tEnter your height inches: ");
+            pounds = ConsoleHelper.InputNumber("\n\tEnter your weight in pounds: ",90, 290);
+            feet = ConsoleHelper.InputNumber("\n\tEnter your height feet: ",4, 6);
+            inches = ConsoleHelper.InputNumber("\n\tEnter your height inches: ",0, 12);
         }
         /// <summary>
         /// Prompts the user to enter all their key information 
@@ -88,8 +97,8 @@ namespace ConsoleAppProject.App02
         /// </summary>
         private void InputMetricValues()
         {
-            kilograms = ConsoleHelper.InputNumber("\n\tEnter your weight in kilograms: ");
-            metres = ConsoleHelper.InputNumber("\n\tEnter your height metres: ");
+            kilograms = ConsoleHelper.InputNumber("\n\tEnter your weight in kilograms: ",41, 132);
+            metres = ConsoleHelper.InputNumber("\n\tEnter your height metres: ",1.42, 2.10);
         }
         /// <summary>
         /// This method is used to convert stone to pounds and 
@@ -97,69 +106,85 @@ namespace ConsoleAppProject.App02
         /// </summary>
         private void ConvertToInchesPounds()
         {
-                height = inches + (feet * 12);
-                weight = pounds + (stone * 14);
+                Height = inches + (feet * 12);
+                Weight = pounds + (stone * 14);
         }
         /// <summary>
         /// This method is used to calculate the BMI value
         /// of the user
         /// </summary>
-        private void CalculateBMI()
+        public void CalculateBMI()
         {
             if(kilograms > 0)
             {
-                bmi = kilograms / (metres * metres);
+                Bmi = kilograms / (metres * metres);
             }
 
             else
             {
-                bmi = (weight * 703) / (height * height);
+                Bmi = (Weight * 703) / (Height * Height);
             }
         }
         /// <summary>
         /// This method displays the user's BMI value to them
         /// </summary>
-        private void DisplayBMI()
+        public void DisplayBMI()
         {
-            Console.WriteLine($"\n\tYour BMI value is {Math.Round(bmi,2)}");
+            Console.WriteLine($"\n\tYour BMI value is {Math.Round(Bmi,2)}");
 
-            if(bmi <= 18.50)
+            if(Bmi <= 18.50)
             {
-                status = BMI_Status.UnderWeight;
-                Console.Write($"\tYour BMI status is {status}");
+                Status = BMI_Status.UnderWeight;
+                ///Console.Write($"\tYour BMI status is {status}");
+                DisplayBMIMessage(Status);
             }
 
-            else if(bmi <= 24.9)
+            else if(Bmi <= 24.9)
             {
-                status = BMI_Status.NormalWeight;
-                Console.WriteLine($"\tYour BMI status is {status}");
+                Status = BMI_Status.NormalWeight;
+                DisplayBMIMessage(Status);
             }
 
-            else if(bmi <= 29.9)
+            else if(Bmi <= 29.9)
             {
-                status = BMI_Status.OverWeight;
-                Console.WriteLine($"\tYour BMI status is {status}");
+                Status = BMI_Status.OverWeight;
+                DisplayBMIMessage(Status);
             }
 
-            else if(bmi <= 34.9)
+            else if(Bmi <= 34.9)
             {
-                status = BMI_Status.ObeseI;
-                Console.WriteLine($"\tYour BMI status is {status}");
+                Status = BMI_Status.ObeseI;
+                DisplayBMIMessage(Status);
             }
 
-            else if(bmi <= 39.9)
+            else if(Bmi <= 39.9)
             {
-                status = BMI_Status.ObeseII;
-                Console.WriteLine($"\tYour BMI status is {status}");
+                Status = BMI_Status.ObeseII;
+                DisplayBMIMessage(Status);
             }
 
-            else if(bmi <= 40)
+            else if(Bmi <= 40)
             {
-                status = BMI_Status.ObeseIII;
-                Console.WriteLine($"\tYour BMI status is {status}");
+                Status = BMI_Status.ObeseIII;
+                DisplayBMIMessage(Status);
             }
         }
+        /// <summary>
+        /// Displays the user's bmi status and a BAME message
+        /// </summary>
+        /// <param name="status"></param>
+        private void DisplayBMIMessage(BMI_Status status)
+        {
+            Console.WriteLine($"\tYour BMI status is {status}");
+            Console.WriteLine("\n\tIf you are Black, Asian or other" +
+                "minority ethnic groups, you have a higher risk\n");
 
+        }
+        /// <summary>
+        /// Gives the user a choice if they want to carry out
+        /// another calculation or close the program
+        /// </summary>
+        /// <returns></returns>
         private bool SelectRepeat()
         {
             bool repeat = true;

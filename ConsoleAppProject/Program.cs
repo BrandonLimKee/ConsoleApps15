@@ -23,6 +23,14 @@ namespace ConsoleAppProject
             }
         }
 
+        public static BMI_Status BMI_Status
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Green;
