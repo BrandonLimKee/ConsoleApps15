@@ -88,7 +88,7 @@ namespace ConsoleAppProject.App02
         {
             stone = ConsoleHelper.InputNumber("\n\tEnter your weight in stone: ");
             pounds = ConsoleHelper.InputNumber("\n\tEnter your weight in pounds: ",90, 290);
-            feet = ConsoleHelper.InputNumber("\n\tEnter your height feet: ",4, 6);
+            feet = ConsoleHelper.InputNumber("\n\tEnter your height feet: ",4, 7);
             inches = ConsoleHelper.InputNumber("\n\tEnter your height inches: ",0, 12);
         }
         /// <summary>
@@ -107,7 +107,7 @@ namespace ConsoleAppProject.App02
         /// This method is used to convert stone to pounds and 
         /// feet to inches
         /// </summary>
-        private void ConvertToInchesPounds()
+        public void ConvertToInchesPounds()
         {
                 Height = inches + (feet * 12);
                 Weight = pounds + (stone * 14);
@@ -170,7 +170,7 @@ namespace ConsoleAppProject.App02
                 DisplayBMIMessage(Status);
             }
 
-            else if(Bmi <= 40)
+            else if(Bmi > 40)
             {
                 Status = BMI_Status.ObeseIII;
                 DisplayBMIMessage(Status);
