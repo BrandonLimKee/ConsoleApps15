@@ -29,6 +29,13 @@ namespace ConsoleAppProject.App03
         public int Minimum { get; set; }
         public int Maximum { get; set; }
 
+        private string[] choices = {"Input Marks",
+                                    "Output Marks",
+                                    "Output Stats",
+                                    "Output Grade Profile",
+                                    "Quit"};
+
+        private bool repeat = true;
         public StudentGrades()
         {
             Students = new string[]
@@ -43,12 +50,26 @@ namespace ConsoleAppProject.App03
             Marks = new int[Students.Length];
         }
 
+        public void Run()
+        {
+            while (repeat)
+            {
+                ConsoleHelper.OutputHeading("Student Grades");
+                ExcecuteChoice(ConsoleHelper.SelectChoice(choices));
+
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
         public void InputMarks()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\tEnter the mark below for each Student\n");
+            
+            for(int i = 0; i < Students.Length; i++)
+            {
+                Marks[i] = (int)ConsoleHelper.InputNumber($"\tMarks for {Students[i]}: ",1,100);
+            }
         }
 
         /// <summary>
@@ -56,7 +77,7 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void OutputMarks()
         {
-            throw new NotImplementedException();
+            
         }
 
         /// <summary>
@@ -108,11 +129,15 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void CalculateStats()
         {
+            Minimum = Marks[0];
+            Maximum = Marks[0];
             double total = 0;
 
             foreach(int mark in Marks)
             {
-                total = total + mark;
+                if (mark > Maximum) Maximum = mark;
+                if (mark < Minimum) Minimum = mark;
+                total += mark;
             }
 
             Mean = total / Marks.Length;
@@ -133,6 +158,19 @@ namespace ConsoleAppProject.App03
                 Grades grade = ConvertToGrade(mark);
                 GradeProfile[(int)grade]++;
             }
+        }
+
+        private void ExcecuteChoice(int choice)
+        {
+            if(choice == 1)
+            {
+                InputMarks();
+            }
+            else if(choice == 2)
+            {
+                repeat = false;
+            }
+  
         }
 
         public void TestGradesEnumeration()

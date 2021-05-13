@@ -121,6 +121,26 @@ namespace ConsoleAppTests
         }
 
         [TestMethod]
+        public void TestCalculateMinimum()
+        {
+            converter.Marks = testMarks;
+            int expectedMinimum = 10;
+            converter.CalculateStats();
+
+            Assert.AreEqual(expectedMinimum, converter.Minimum);
+        }
+
+        [TestMethod]
+        public void TestCalculateMaximum()
+        {
+            converter.Marks = testMarks;
+            int expectedMaximum = 100;
+            converter.CalculateStats();
+
+            Assert.AreEqual(expectedMaximum, converter.Maximum);
+        }
+
+        [TestMethod]
         public void TestGradeProfile()
         {
             converter.Marks = testMarks;
