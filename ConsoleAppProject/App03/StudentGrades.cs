@@ -77,7 +77,12 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void OutputMarks()
         {
-            
+            Console.WriteLine("\n\tStudents Marks\n");
+
+            for (int i = 0; i < Students.Length; i++)
+            {
+                Console.WriteLine($"\t{Students[i]}'s mark is: {Marks[i]}");
+            }
         }
 
         /// <summary>
@@ -118,7 +123,7 @@ namespace ConsoleAppProject.App03
             foreach(int count in GradeProfile)
             {
                 int percentage = count * 100 / Marks.Length;
-                Console.WriteLine($"Grade {grade} {percentage}% Count {count}");
+                Console.WriteLine($"\tGrade {grade} {percentage}% Count {count}");
                 grade++;
             }
             Console.WriteLine();
@@ -141,6 +146,13 @@ namespace ConsoleAppProject.App03
             }
 
             Mean = total / Marks.Length;
+        }
+
+        public void OutputStats()
+        {
+            Console.WriteLine($"\tThe Maximum Mark was {Maximum}");
+            Console.WriteLine($"\tThe Minimum Mark was {Minimum}");
+            Console.WriteLine($"\tThe Average Mark was {Mean}");
         }
 
         /// <summary>
@@ -168,9 +180,22 @@ namespace ConsoleAppProject.App03
             }
             else if(choice == 2)
             {
+                OutputMarks();
+            }
+            else if(choice == 3)
+            {
+                CalculateStats();
+                OutputStats();
+            }
+            else if (choice == 4)
+            {
+                CalculateGradeProfile();
+                OutputGradeProfile();
+            }
+            else if (choice == 5)
+            {
                 repeat = false;
             }
-  
         }
 
         public void TestGradesEnumeration()
