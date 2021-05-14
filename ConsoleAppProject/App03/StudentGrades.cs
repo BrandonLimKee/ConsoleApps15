@@ -49,7 +49,10 @@ namespace ConsoleAppProject.App03
             GradeProfile = new int[(int)Grades.A + 1];
             Marks = new int[Students.Length];
         }
-
+        /// <summary>
+        /// This method will be used to run through all
+        /// the methods in a set order as long as "repeat" is true
+        /// </summary>
         public void Run()
         {
             while (repeat)
@@ -60,7 +63,7 @@ namespace ConsoleAppProject.App03
             }
         }
         /// <summary>
-        /// 
+        /// This will promt the user to enter a mark for every student
         /// </summary>
         public void InputMarks()
         {
@@ -73,7 +76,7 @@ namespace ConsoleAppProject.App03
         }
 
         /// <summary>
-        /// 
+        /// This will output every students name and mark
         /// </summary>
         public void OutputMarks()
         {
@@ -115,6 +118,10 @@ namespace ConsoleAppProject.App03
             else return Grades.C;
         }
 
+        /// <summary>
+        /// This will output the gradeprofile showing
+        /// what percentage of students got each grade
+        /// </summary>
         private void OutputGradeProfile()
         {
             Grades grade = Grades.F;
@@ -130,7 +137,7 @@ namespace ConsoleAppProject.App03
         }
 
         /// <summary>
-        /// 
+        /// This will calculate the maximum, minimum and mean
         /// </summary>
         public void CalculateStats()
         {
@@ -148,15 +155,18 @@ namespace ConsoleAppProject.App03
             Mean = total / Marks.Length;
         }
 
+        /// <summary>
+        /// This will output the maximum, minimum and mean
+        /// </summary>
         public void OutputStats()
         {
-            Console.WriteLine($"\tThe Maximum Mark was {Maximum}");
+            Console.WriteLine($"\n\tThe Maximum Mark was {Maximum}");
             Console.WriteLine($"\tThe Minimum Mark was {Minimum}");
             Console.WriteLine($"\tThe Average Mark was {Mean}");
         }
 
         /// <summary>
-        /// 
+        /// This will workout how many students have achived each grade
         /// </summary>
         public void CalculateGradeProfile()
         {
@@ -171,7 +181,10 @@ namespace ConsoleAppProject.App03
                 GradeProfile[(int)grade]++;
             }
         }
-
+        /// <summary>
+        /// This will carry out a certain action based on a given choice
+        /// </summary>
+        /// <param name="choice"></param>
         private void ExcecuteChoice(int choice)
         {
             if(choice == 1)
