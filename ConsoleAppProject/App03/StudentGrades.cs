@@ -81,10 +81,14 @@ namespace ConsoleAppProject.App03
         public void OutputMarks()
         {
             Console.WriteLine("\n\tStudents Marks\n");
+            
 
             for (int i = 0; i < Students.Length; i++)
             {
-                Console.WriteLine($"\t{Students[i]}'s mark is: {Marks[i]}");
+                Grades grade = ConvertToGrade(Marks[i]);
+                Console.WriteLine($"\t{Students[i]}'s mark is: {Marks[i]}" +
+                    $"\n\tTheir Grade is: {grade}\n");
+                
             }
         }
 
