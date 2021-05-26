@@ -33,7 +33,10 @@ namespace ConsoleAppProject.App03
                                     "Output Marks",
                                     "Output Stats",
                                     "Output Grade Profile",
-                                    "Quit"};
+                                    "Quit"
+                                    
+                                    };
+
 
         private bool repeat = true;
         public StudentGrades()
@@ -55,12 +58,13 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void Run()
         {
+
             while (repeat)
             {
                 ConsoleHelper.OutputHeading("Student Grades");
                 ExcecuteChoice(ConsoleHelper.SelectChoice(choices));
-
             }
+            
         }
         /// <summary>
         /// This will promt the user to enter a mark for every student
@@ -81,14 +85,11 @@ namespace ConsoleAppProject.App03
         public void OutputMarks()
         {
             Console.WriteLine("\n\tStudents Marks\n");
-            
 
-            for (int i = 0; i < Students.Length; i++)
+
+            for(int i = 0; i < Students.Length; i++)
             {
-                Grades grade = ConvertToGrade(Marks[i]);
-                Console.WriteLine($"\t{Students[i]}'s mark is: {Marks[i]}" +
-                    $"\n\tTheir Grade is: {grade}\n");
-                
+                Console.WriteLine($"\t{Students[i]}'s mark is: {Marks[i]}");
             }
         }
 
@@ -213,6 +214,7 @@ namespace ConsoleAppProject.App03
             {
                 repeat = false;
             }
+           
         }
 
         public void TestGradesEnumeration()
