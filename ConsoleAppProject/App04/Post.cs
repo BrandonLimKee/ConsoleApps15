@@ -5,13 +5,17 @@ namespace ConsoleAppProject.App04
 {
     public class Post
     {
-        private int likes;
-
-        private readonly List<String> comments;
+        public int PostId { get; set; }
 
         //username of the post's author
-        public String Username { get; }
-        public DateTime Timestamp { get; }
+        public String Username { get; set; }
+        public DateTime Timestamp { get; set; }
+
+        public int likes;
+
+        public readonly List<String> comments;
+
+        
 
         /// <summary>
         /// 
@@ -22,6 +26,8 @@ namespace ConsoleAppProject.App04
 
             likes = 0;
             comments = new List<String>();
+
+            this.Timestamp = DateTime.Now;
         }
 
 
@@ -63,6 +69,8 @@ namespace ConsoleAppProject.App04
         public virtual void Display()
         {
             Console.WriteLine();
+            Console.WriteLine($"     ID:{PostId}");
+
             Console.WriteLine($"    Author: {Username}");
             Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();

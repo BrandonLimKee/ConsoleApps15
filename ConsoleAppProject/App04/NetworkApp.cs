@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using ConsoleAppProject.Helpers;
 
 namespace ConsoleAppProject.App04
@@ -9,27 +7,47 @@ namespace ConsoleAppProject.App04
     {
         private NewsFeed news = new NewsFeed();
 
-        //private String[] choices = { "Add Message", "Add Photo", "Display All", "Quit" };
+
         private String[] choices =
         {
-                "Add Message",
-                "Add Photo",
+                "Post Message",
+                "Post Photo",
                 "Display all",
-                "Quit"
+                "Remove Post"
+                
         };
 
         private string message;
         private string author;
         private string caption;
         private string filename;
+        private bool quit;
 
         public void Run()
         {
-            ConsoleHelper.OutputHeading("Social Netowrk");
-            ConsoleHelper.SelectChoice(choices);
+            quit = false;
+            do
+            {
+                ConsoleHelper.OutputHeading("Social Network");
+                int choice = ConsoleHelper.SelectChoice(choices);
+                switch (choice)
+                {
+                    case 1: PostMessage(); break;
+                    case 2: PostPhoto(); break;
+                    case 3: DisplayAll(); break;
+                    case 4: RemovePost(); break;
+                    case 5: quit = true; break;
+                }
+            } while (!quit);
+            
         }
 
-        private void AddMessage()
+        private void DisplayAll()
+        {
+            news.Display();
+        }
+
+        private void PostMessage()
         {
             Console.Write("\tPlease Enter Your Name: ");
             author = Console.ReadLine();
@@ -42,7 +60,7 @@ namespace ConsoleAppProject.App04
 
             post.Display();
         }
-        private void AddPhoto()
+        private void PostPhoto()
         {
             Console.Write("\tPlease Enter Your Name: ");
             author = Console.ReadLine();
@@ -57,6 +75,26 @@ namespace ConsoleAppProject.App04
             news.AddPhotoPost(post);
 
             post.Display();
+        }
+
+        
+
+        private void RemovePost()
+        {
+            ConsoleHelper.OutputTitle("Removing Post");
+
+            int id = (int)ConsoleHelper.InputNumber("Please Enter The Post ID");
+            Post post = news.FindPost(id);
+
+            if(post!= null)
+            {
+                Console.WriteLine($"Removing Post Number {post.PostId}");
+                news.RemovePost(id);
+            }
+            else
+            {
+                Console.WriteLine("Post Number Does Not Exsist");
+            }
         }
 
     

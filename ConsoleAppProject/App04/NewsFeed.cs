@@ -20,7 +20,7 @@ namespace ConsoleAppProject.App04
     ///</author> 
     public class NewsFeed
     {
-        private readonly List<Post> posts;
+        private  List<Post> postList;
 
 
         ///<summary>
@@ -28,8 +28,21 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public NewsFeed()
         {
-            posts = new List<Post>();
+            postList = new List<Post>();
+            MessagePost message = new MessagePost("Brandon", "Hello")
+            {
+                PostId = 1
+            };
 
+            postList.Add(message);
+
+            PhotoPost photo = new PhotoPost("John","Photo.jpg", "My Dog")
+            {
+                PostId = 2,
+                 
+            };
+
+            postList.Add(photo);
         }
 
 
@@ -40,7 +53,10 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public void AddMessagePost(MessagePost message)
         {
-            posts.Add(message);
+            message.PostId = postList.Count + 1;
+
+
+            postList.Add(message);
         }
 
         ///<summary>
@@ -50,7 +66,7 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public void AddPhotoPost(PhotoPost photo)
         {
-            posts.Add(photo);
+            postList.Add(photo);
         }
 
         ///<summary>
@@ -60,12 +76,25 @@ namespace ConsoleAppProject.App04
         public void Display()
         {
             // display all text posts
-            foreach (Post post in posts)
+            foreach (Post post in postList)
             {
                 post.Display();
                 Console.WriteLine();   // empty line between posts
             }
         }
+
+        public Post FindPost(int id)
+        {
+           return postList[id - 1];
+        }
+
+        public void RemovePost(int id)
+        {
+            Post post = FindPost(id);
+                postList.Remove(post);
+        }
+
+
     }
 
 }
