@@ -69,15 +69,15 @@ namespace ConsoleAppProject.App04
         public virtual void Display()
         {
             Console.WriteLine();
-            Console.WriteLine($"     ID:{PostId}");
+            Console.WriteLine($"\tID:{PostId}");
 
-            Console.WriteLine($"    Author: {Username}");
-            Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
+            Console.WriteLine($"\tAuthor: {Username}");
+            Console.WriteLine($"\tTime Elpased: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();
 
             if (likes > 0)
             {
-                Console.WriteLine($"    Likes:  {likes}  people like this.");
+                Console.WriteLine($"\tLikes:  {likes}  people like this.");
             }
             else
             {
@@ -86,11 +86,15 @@ namespace ConsoleAppProject.App04
 
             if (comments.Count == 0)
             {
-                Console.WriteLine("    No comments.");
+                Console.WriteLine("\tNo comments.");
             }
             else
             {
-                Console.WriteLine($"    {comments.Count}  comment(s). Click here to view.");
+                Console.WriteLine("\tComments\n");
+                for(int i = 0; i < comments.Count; i++)
+                {
+                    Console.WriteLine($"\t{i+1}.{comments[i]}");
+                }
             }
         }
         ///<summary>

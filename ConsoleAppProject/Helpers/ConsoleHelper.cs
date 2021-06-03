@@ -156,7 +156,7 @@ namespace ConsoleAppProject.Helpers
             }
 
             Console.WriteLine("\n");
-            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
         }
     }
 }

@@ -21,6 +21,8 @@ namespace ConsoleAppProject.App04
     public class NewsFeed
     {
         private  List<Post> postList;
+        private int max;
+
 
 
         ///<summary>
@@ -29,20 +31,20 @@ namespace ConsoleAppProject.App04
         public NewsFeed()
         {
             postList = new List<Post>();
-            MessagePost message = new MessagePost("Brandon", "Hello")
-            {
-                PostId = 1
-            };
+            //MessagePost message = new MessagePost("Brandon", "Hello")
+            //{
+            //    PostId = 1
+            //};
 
-            postList.Add(message);
+            //postList.Add(message);
 
-            PhotoPost photo = new PhotoPost("John","Photo.jpg", "My Dog")
-            {
-                PostId = 2,
-                 
-            };
+            //PhotoPost photo = new PhotoPost("John", "Photo.jpg", "My Dog")
+            //{
+            //    PostId = 2,
 
-            postList.Add(photo);
+            //};
+
+            //postList.Add(photo);
         }
 
 
@@ -52,10 +54,24 @@ namespace ConsoleAppProject.App04
         /// @param text  The text post to be added.
         ///</summary>
         public void AddMessagePost(MessagePost message)
-        {
-            message.PostId = postList.Count + 1;
+        {  
+            if(postList == null)
+            {
+                message.PostId = 1;
+            }
+            else
+            {
+                foreach (Post post in postList)
+                {
+                     max = post.PostId;
+                    if (max < post.PostId)
+                    {
+                        max = post.PostId;
+                    }
+                }
 
-
+                message.PostId = max + 1;
+            }
             postList.Add(message);
         }
 
@@ -66,6 +82,23 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public void AddPhotoPost(PhotoPost photo)
         {
+            if (postList == null)
+            {
+                photo.PostId = 1;
+            }
+            else
+            {
+                foreach (Post post in postList)
+                {
+                    max = post.PostId;
+                    if (max < post.PostId)
+                    {
+                        max = post.PostId;
+                    }
+                }
+
+                photo.PostId = max + 1;
+            }
             postList.Add(photo);
         }
 
@@ -79,7 +112,23 @@ namespace ConsoleAppProject.App04
             foreach (Post post in postList)
             {
                 post.Display();
-                Console.WriteLine();   // empty line between posts
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\t---------------------");   // space between posts
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            }
+        }
+
+        public void DisplayUsersPost(string author)
+        {
+            foreach(Post post in postList)
+            {
+                if(post.Username == author)
+                {
+                    post.Display();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\t---------------------");   // space between posts
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                }
             }
         }
 
@@ -91,8 +140,9 @@ namespace ConsoleAppProject.App04
         public void RemovePost(int id)
         {
             Post post = FindPost(id);
-                postList.Remove(post);
+            postList.Remove(post);
         }
+
 
 
     }
