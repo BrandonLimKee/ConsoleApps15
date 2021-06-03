@@ -21,6 +21,9 @@ namespace ConsoleAppProject.App04
     public class NewsFeed
     {
         private  List<Post> postList;
+        /// <summary>
+        /// Used to keep track of the largest ID for giving new ID
+        /// </summary>
         private int max;
 
 
@@ -117,7 +120,10 @@ namespace ConsoleAppProject.App04
                 Console.ForegroundColor = ConsoleColor.DarkMagenta;
             }
         }
-
+        /// <summary>
+        /// Displays all post from a particular user line by line
+        /// </summary>
+        /// <param name="author"></param>
         public void DisplayUsersPost(string author)
         {
             foreach(Post post in postList)
@@ -131,12 +137,19 @@ namespace ConsoleAppProject.App04
                 }
             }
         }
-
+        /// <summary>
+        /// Finds and retruns a post given a matching ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Post FindPost(int id)
         {
            return postList[id - 1];
         }
-
+        /// <summary>
+        /// Removes a post given a matching ID
+        /// </summary>
+        /// <param name="id"></param>
         public void RemovePost(int id)
         {
             Post post = FindPost(id);

@@ -51,6 +51,9 @@ namespace ConsoleAppProject.App04
             
         }
 
+        /// <summary>
+        /// /Displays all a users posts given a username
+        /// </summary>
         private void DisplayUsersPost()
         {
             Console.Write("\n\tPlease enter a Username: ");
@@ -59,13 +62,17 @@ namespace ConsoleAppProject.App04
             ConsoleHelper.OutputTitle($"Displaying {author}'s Post");
             news.DisplayUsersPost(author);
         }
-
+        /// <summary>
+        /// Display all posts
+        /// </summary>
         private void DisplayAll()
         {
             ConsoleHelper.OutputTitle("Displaying All Posts");
             news.Display();
         }
-
+        /// <summary>
+        /// Posts a message to the newsfeed
+        /// </summary>
         private void PostMessage()
         {
             Console.Write("\n\tPlease Enter Your Name: ");
@@ -79,6 +86,9 @@ namespace ConsoleAppProject.App04
 
             ConsoleHelper.OutputTitle("Message Posted");
         }
+        /// <summary>
+        /// Post a photo to the news feed
+        /// </summary>
         private void PostPhoto()
         {
             Console.Write("\n\tPlease Enter Your Name: ");
@@ -95,7 +105,9 @@ namespace ConsoleAppProject.App04
 
             ConsoleHelper.OutputTitle("Photo Posted");
         }
-       
+       /// <summary>
+       /// Remove a post from the news feed
+       /// </summary>
         private void RemovePost()
         {
             ConsoleHelper.OutputTitle("Removing Post");
@@ -115,7 +127,9 @@ namespace ConsoleAppProject.App04
 
             ConsoleHelper.OutputTitle("Post Removed");
         }
-
+        /// <summary>
+        /// Add a comment to a post
+        /// </summary>
         private void AddComment()
         {
             int id = (int)ConsoleHelper.InputNumber("\n\tPlease Enter The ID of the Post you wish to Comment on: ");
@@ -134,7 +148,9 @@ namespace ConsoleAppProject.App04
 
             ConsoleHelper.OutputTitle("Comment Added");
         }
-
+        /// <summary>
+        /// Add a like to a post
+        /// </summary>
         private void LikePost()
         {
             int id = (int)ConsoleHelper.InputNumber("\n\tPlease Enter The ID of the Post you wish to Like: ");
@@ -142,6 +158,9 @@ namespace ConsoleAppProject.App04
 
             post.Like();
         }
+        /// <summary>
+        /// Take away a like from a post
+        /// </summary>
         private void UnlikePost()
         {
             int id = (int)ConsoleHelper.InputNumber("\n\tPlease Enter The ID of the Post you wish to Unlike: ");

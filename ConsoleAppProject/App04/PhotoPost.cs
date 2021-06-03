@@ -43,7 +43,9 @@ namespace ConsoleAppProject.App04
             this.Filename = filename;
             this.Caption = caption;          
         }
-
+        /// <summary>
+        /// Displays photo post information
+        /// </summary>
         public override void Display()
         {
             Console.WriteLine($"\tFilename: [{Filename}]");

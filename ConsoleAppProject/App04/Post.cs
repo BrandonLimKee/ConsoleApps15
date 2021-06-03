@@ -18,7 +18,7 @@ namespace ConsoleAppProject.App04
         
 
         /// <summary>
-        /// 
+        /// The creator of a post
         /// </summary>
         public Post(String author)
         {
